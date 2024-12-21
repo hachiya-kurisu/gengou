@@ -295,3 +295,8 @@ func EraYear(t time.Time) string {
 	year := t.Year() - start.Year() + 1
 	return fmt.Sprintf("%s%d年", era.Name, year)
 }
+
+func EraDate(t time.Time) string {
+	eraYear := EraYear(t)
+	return fmt.Sprintf("%s%d月%d日", eraYear, t.Month(), t.Day())
+}

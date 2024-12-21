@@ -38,3 +38,11 @@ func TestReiwaLastDayOfYear(t *testing.T) {
 		t.Errorf("formatting failed: %s", year)
 	}
 }
+
+func TestEraDay(t *testing.T) {
+	date, _ := time.Parse(layout, "2019.12.31 JST")
+	year := EraDate(date)
+	if year != "令和元年12月31日" {
+		t.Errorf("formatting failed: %s", year)
+	}
+}
