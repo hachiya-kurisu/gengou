@@ -15,6 +15,7 @@ type Era struct {
 }
 
 var Eras = []Era{
+	{"大化", "たいか", 645, 1, 1, nil}, // date?
 	{"白雉", "はくち", 650, 2, 15, nil},
 	{"朱鳥", "しゅちょう（すちょう）", 686, 7, 20, nil},
 	{"大宝", "たいほう（だいほう）", 701, 3, 21, nil},
@@ -260,37 +261,31 @@ var Eras = []Era{
 }
 
 func init() {
-	loc, err := time.LoadLocation("Asia/Tokyo")
-	if err != nil {
-		panic("didn't find time zone")
-	}
+	loc, _ := time.LoadLocation("Asia/Tokyo")
 	for i, era := range Eras {
 		date := time.Date(era.Y, time.Month(era.M), era.D, 0, 0, 0, 0, loc)
 		Eras[i].Date = &date
 	}
 }
 
-func Find(t time.Time) *Era {
+func Find(t time.Time) (*Era, error) {
 	for _, era := range slices.Backward(Eras) {
-		if era.Date == nil {
-			fmt.Println("oops")
-		}
 		if t.Equal(*era.Date) || t.After(*era.Date) {
-			return &era
+			return &era, nil
 		}
 	}
-	return nil
+	return nil, fmt.Errorf("era not found")
 }
 
 func EraYear(t time.Time) string {
-	era := Find(t)
+	era, err := Find(t)
+	if err != nil {
+		return fmt.Sprintf("大化前（%d年）", t.Year())
+	}
 	if t.Year() == era.Y {
 		return fmt.Sprintf("%s元年", era.Name)
 	}
-	loc, err := time.LoadLocation("Asia/Tokyo")
-	if err != nil {
-		panic("didn't find time zone")
-	}
+	loc, _ := time.LoadLocation("Asia/Tokyo")
 	start := time.Date(era.Y, 1, 1, 0, 0, 0, 0, loc)
 	year := t.Year() - start.Year() + 1
 	return fmt.Sprintf("%s%d年", era.Name, year)
