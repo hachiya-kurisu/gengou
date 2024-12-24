@@ -280,7 +280,7 @@ func Find(t time.Time) (*Era, error) {
 func EraYear(t time.Time) string {
 	era, err := Find(t)
 	if err != nil {
-		return fmt.Sprintf("大化前（%d年）", t.Year())
+		return fmt.Sprintf("%d年", t.Year())
 	}
 	if t.Year() == era.Y {
 		return fmt.Sprintf("%s元年", era.Name)
