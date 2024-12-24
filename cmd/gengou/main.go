@@ -14,12 +14,12 @@ func main() {
 	version := flag.Bool("v", false, "version")
 	layout := flag.String("f", "2006.01.02", "time format")
 
+	flag.Parse()
+
 	if *version {
 		fmt.Printf("%s %s\n", os.Args[0], gengou.Version)
 		os.Exit(0)
 	}
-
-	flag.Parse()
 
 	if flag.NArg() < 1 {
 		now := time.Now()
