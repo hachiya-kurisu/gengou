@@ -48,9 +48,9 @@ func TestEraDay(t *testing.T) {
 }
 
 func TestEraNotFound(t *testing.T) {
-	date, _ := time.Parse(layout, "644.12.31 JST")
+	date, _ := time.Parse(layout, "0644.12.31 JST")
 	year := EraYear(date)
-	if year != "大化前（1年）" {
+	if year != "大化前（644年）" {
 		t.Errorf("formatting failed: %s", year)
 	}
 }
