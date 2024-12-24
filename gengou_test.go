@@ -1,6 +1,7 @@
 package gengou
 
 import (
+	"fmt"
 	"testing"
 	"time"
 )
@@ -53,4 +54,20 @@ func TestEraNotFound(t *testing.T) {
 	if year != "644年" {
 		t.Errorf("formatting failed: %s", year)
 	}
+}
+
+func ExampleFind() {
+	now := time.Now()
+	era, err := Find(now)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(era.Name)
+	// Output: 令和
+}
+
+func ExampleEraDate() {
+	date, _ := time.Parse(layout, "1991.07.29 JST")
+	fmt.Println(EraDate(date))
+	// Output: 平成3年7月29日
 }
