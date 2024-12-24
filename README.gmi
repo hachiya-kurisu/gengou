@@ -6,7 +6,7 @@ find japanese era names from dates
 
 ```
 now := time.Time.now()
-era := gengou.Find(now).Name
+era, err := gengou.Find(now).Name
 ```
 
 can properly calculate the era year as well:
