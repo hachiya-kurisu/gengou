@@ -261,7 +261,7 @@ var Eras = []Era{
 }
 
 func init() {
-	loc, _ := time.LoadLocation("Asia/Tokyo")
+	loc := time.FixedZone("JST", 9*60*60)
 	for i, era := range Eras {
 		date := time.Date(era.Y, time.Month(era.M), era.D, 0, 0, 0, 0, loc)
 		Eras[i].Date = &date
@@ -285,7 +285,7 @@ func EraYear(t time.Time) string {
 	if t.Year() == era.Y {
 		return fmt.Sprintf("%s元年", era.Name)
 	}
-	loc, _ := time.LoadLocation("Asia/Tokyo")
+	loc := time.FixedZone("JST", 9*60*60)
 	start := time.Date(era.Y, 1, 1, 0, 0, 0, 0, loc)
 	year := t.Year() - start.Year() + 1
 	return fmt.Sprintf("%s%d年", era.Name, year)
