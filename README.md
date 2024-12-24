@@ -12,11 +12,14 @@ era := gengou.Find(now).Name
 can properly calculate the era year as well:
 
 ```
-gengou.EraYear(time.Parse("2006.01.02 MST", "2019.04.30 JST")) // "平成31年"
+// returns "平成31年"
+gengou.EraYear(time.Parse("2006.01.02 MST", "2019.04.30 JST"))
 
-gengou.EraYear(time.Parse("2006.01.02 MST", "2019.05.01 JST")) // "令和元年"
+// returns "令和元年"
+gengou.EraYear(time.Parse("2006.01.02 MST", "2019.05.01 JST"))
 
-gengou.EraYear(time.Parse("2006.01.02 MST", "2020.01.01 JST")) // "令和2年"
+// returns "令和2年"
+gengou.EraYear(time.Parse("2006.01.02 MST", "2020.01.01 JST"))
 ```
 
 ## cli
