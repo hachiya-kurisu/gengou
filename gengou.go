@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-const Version = "0.0.3"
+const Version = "0.0.4"
 
 type Era struct {
 	Name, Kana string
