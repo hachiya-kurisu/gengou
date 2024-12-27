@@ -2,18 +2,6 @@
 
 find japanese era names from dates
 
-## installation
-
-### arch linux
-
-[gengou](https://aur.archlinux.org/packages/gengou)
-is available as a package in the AUR
-
-it can be installed with an AUR helper (e.g. yay):
-```
-$ yay -S gengou
-```
-
 ## usage
 
 ```
@@ -48,5 +36,17 @@ gengou.EraYear(time.Parse("2006.01.02 MST", "2020.01.01 JST"))
 令和元年
 % gengou -f 2006 1991 # go date layouts
 平成3年
+```
+
+## installation
+
+### arch linux
+
+[gengou](https://aur.archlinux.org/packages/gengou)
+is available as a package in the AUR
+
+it can be installed with an AUR helper (e.g. yay):
+```
+$ yay -S gengou
 ```
 
