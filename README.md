@@ -36,6 +36,8 @@ gengou.EraYear(time.Parse("2006.01.02 MST", "2020.01.01 JST"))
 令和元年
 % gengou -f 2006 1991 # go date layouts
 平成3年
+% gengou -d # show the full date
+令和6年12月27日
 ```
 
 ## installation
