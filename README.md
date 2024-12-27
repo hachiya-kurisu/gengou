@@ -2,6 +2,18 @@
 
 find japanese era names from dates
 
+## installation
+
+### arch linux
+
+[gengou](https://aur.archlinux.org/packages/gengou)
+is available as a package in the AUR
+
+it can be installed with an AUR helper (e.g. yay):
+```
+$ yay -S gengou
+```
+
 ## usage
 
 ```
