@@ -42,6 +42,12 @@ gengou.EraYear(time.Parse("2006.01.02 MST", "2020.01.01 JST"))
 
 ## installation
 
+### go
+
+```
+go install blekksprut.net/gengou/cmd/gengou@latest
+```
+
 ### arch linux
 
 [gengou](https://aur.archlinux.org/packages/gengou)

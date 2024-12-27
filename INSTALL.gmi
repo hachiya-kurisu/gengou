@@ -1,5 +1,11 @@
 ## installation
 
+### go
+
+```
+go install blekksprut.net/gengou/cmd/gengou@latest
+```
+
 ### arch linux
 
 => https://aur.archlinux.org/packages/gengou gengou
