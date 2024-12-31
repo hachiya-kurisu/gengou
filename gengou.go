@@ -1,3 +1,5 @@
+// Package gengou implements functions for converting dates to the
+// Japanese era calendar scheme.
 package gengou
 
 import (
@@ -8,12 +10,14 @@ import (
 
 const Version = "0.0.8"
 
+// Represents a Japanese era.
 type Era struct {
 	Name, Kana string
 	Y, M, D    int
 	Date       *time.Time
 }
 
+// All Japanese eras, from 大化 to 令和.
 var Eras = []Era{
 	{"大化", "たいか", 645, 1, 1, nil}, // date?
 	{"白雉", "はくち", 650, 2, 15, nil},
@@ -268,6 +272,8 @@ func init() {
 	}
 }
 
+// Find returns the Era matching time t.
+// Reports an error if the date is before the first era (大化).
 func Find(t time.Time) (*Era, error) {
 	for _, era := range slices.Backward(Eras) {
 		if t.Equal(*era.Date) || t.After(*era.Date) {
@@ -277,6 +283,7 @@ func Find(t time.Time) (*Era, error) {
 	return nil, fmt.Errorf("era not found")
 }
 
+// EraYear returns the era name and year corresponding to t
 func EraYear(t time.Time) string {
 	era, err := Find(t)
 	if err != nil {
@@ -291,6 +298,7 @@ func EraYear(t time.Time) string {
 	return fmt.Sprintf("%s%d年", era.Name, year)
 }
 
+// EraDate returns the full era name and date corresponding to t
 func EraDate(t time.Time) string {
 	eraYear := EraYear(t)
 	return fmt.Sprintf("%s%d月%d日", eraYear, t.Month(), t.Day())
