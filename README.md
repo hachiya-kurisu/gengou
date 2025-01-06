@@ -2,7 +2,7 @@
 
 find japanese era names from dates
 
-![](gengou.gif)
+![gengou in action (gif)](gengou.gif)
 
 ## usage
 
