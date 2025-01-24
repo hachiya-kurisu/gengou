@@ -303,3 +303,9 @@ func EraDate(t time.Time) string {
 	eraYear := EraYear(t)
 	return fmt.Sprintf("%s%d月%d日", eraYear, t.Month(), t.Day())
 }
+
+// EraDateWithZeros returns the era year and zero-prefixed month and day for t
+func EraDateWithZeros(t time.Time) string {
+	eraYear := EraYear(t)
+	return fmt.Sprintf("%s%02d月%02d日", eraYear, t.Month(), t.Day())
+}
