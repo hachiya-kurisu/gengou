@@ -28,5 +28,6 @@ README.md: README.gmi INSTALL.gmi
 doc: README.md
 
 release: push
+	got send -T
 	git push github --tags
 
