@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const Version = "0.0.8"
+const Version = "0.0.9"
 
 // Represents a Japanese era.
 type Era struct {
