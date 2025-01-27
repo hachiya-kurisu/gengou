@@ -1,4 +1,4 @@
-# gengou (元号)
+# gengou （元号）
 
 find japanese era names from dates
 
@@ -7,7 +7,7 @@ find japanese era names from dates
 ## usage
 
 ```
-now := time.Time.now()
+now := time.Now()
 era, err := gengou.Find(now).Name
 ```
 
