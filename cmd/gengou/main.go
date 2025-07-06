@@ -10,10 +10,10 @@ import (
 )
 
 func main() {
-	w := flag.Bool("w", false, "full-width")
+	w := flag.Bool("w", false, "use full-width characters")
 	d := flag.Bool("d", false, "show full date")
-	v := flag.Bool("v", false, "version")
-	f := flag.String("f", "2006.01.02", "time format")
+	v := flag.Bool("v", false, "show version")
+	f := flag.String("f", "2006.01.02", "time format for parsing dates")
 
 	flag.Parse()
 

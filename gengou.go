@@ -10,6 +10,8 @@ import (
 
 const Version = "0.0.9"
 
+const Offset = 9 * 60 * 60
+
 // Represents a Japanese era.
 type Era struct {
 	Name, Kana string
@@ -265,7 +267,7 @@ var Eras = []Era{
 }
 
 func init() {
-	loc := time.FixedZone("JST", 9*60*60)
+	loc := time.FixedZone("JST", Offset)
 	for i, era := range Eras {
 		date := time.Date(era.Y, time.Month(era.M), era.D, 0, 0, 0, 0, loc)
 		Eras[i].Date = &date
@@ -292,7 +294,7 @@ func EraYear(t time.Time) string {
 	if t.Year() == era.Y {
 		return fmt.Sprintf("%s元年", era.Name)
 	}
-	loc := time.FixedZone("JST", 9*60*60)
+	loc := time.FixedZone("JST", Offset)
 	start := time.Date(era.Y, 1, 1, 0, 0, 0, 0, loc)
 	year := t.Year() - start.Year() + 1
 	return fmt.Sprintf("%s%d年", era.Name, year)
