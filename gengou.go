@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const Version = "0.0.9"
+const Version = "0.1.0"
 
 const Offset = 9 * 60 * 60
 
