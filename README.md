@@ -42,6 +42,9 @@ $ gengou -d # show the full date
 令和6年12月27日
 ```
 
+## author
+
+[蜂谷栗栖](https://blekksprut.net/)
 ## installation
 
 ### go
