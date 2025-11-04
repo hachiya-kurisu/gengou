@@ -1,5 +1,4 @@
-// Package gengou implements functions for converting dates to the
-// Japanese era calendar scheme.
+// Package gengou delivers Japanese calendar shenanigans
 package gengou
 
 import (
@@ -8,7 +7,7 @@ import (
 	"time"
 )
 
-const Version = "0.1.0"
+const Version = "0.2.0"
 
 const Offset = 9 * 60 * 60
 
@@ -17,6 +16,40 @@ type Era struct {
 	Name, Kana string
 	Y, M, D    int
 	Date       *time.Time
+}
+
+// Represents a solar term (節気)
+type SolarTerm struct {
+	Name, Kana string
+	YearDay    int
+}
+
+// All solar terms
+var SolarTerms = []SolarTerm{
+	{"小寒", "しょうかん", 5},
+	{"大寒", "しょうかん", 20},
+	{"立春", "りっしゅん", 35},
+	{"雨水", "うすい", 49},
+	{"啓蟄", "けいちつ", 64},
+	{"春分", "しゅんぶん", 79},
+	{"清明", "せいめい", 94},
+	{"穀雨", "こくう", 110},
+	{"立夏", "りっか", 125},
+	{"小満", "しょうまん", 141},
+	{"芒種", "ぼうしゅ", 156},
+	{"夏至", "げし", 172},
+	{"小暑", "しょうしょ", 188},
+	{"大暑", "たいしょ", 204},
+	{"立秋", "りっしゅう", 219},
+	{"処暑", "しょしょ", 235},
+	{"白露", "はくろ", 250},
+	{"秋分", "しゅうぶん", 266},
+	{"寒露", "かんろ", 281},
+	{"霜降", "そうこう", 296},
+	{"立冬", "りっとう", 311},
+	{"小雪", "しょうせつ", 326},
+	{"大雪", "たいせつ", 341},
+	{"冬至", "とうじ", 356},
 }
 
 // All Japanese eras, from 大化 to 令和.
@@ -283,6 +316,17 @@ func Find(t time.Time) (*Era, error) {
 		}
 	}
 	return nil, fmt.Errorf("era not found")
+}
+
+// FindSolarTerm returns the solar term matching time t.
+func FindSolarTerm(t time.Time) *SolarTerm {
+	yd := t.YearDay()
+	for i, term := range slices.Backward(SolarTerms) {
+		if yd >= term.YearDay {
+			return &SolarTerms[i]
+		}
+	}
+	return &SolarTerms[len(SolarTerms)-1]
 }
 
 // EraYear returns the era name and year corresponding to t

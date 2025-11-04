@@ -1,10 +1,11 @@
 package gengou_test
 
 import (
-	"blekksprut.net/gengou"
 	"fmt"
 	"testing"
 	"time"
+
+	"blekksprut.net/gengou"
 )
 
 var layout = "2006.01.02 MST"
@@ -62,6 +63,22 @@ func TestEraNotFound(t *testing.T) {
 	year := gengou.EraYear(date)
 	if year != "644年" {
 		t.Errorf("formatting failed: %s", year)
+	}
+}
+
+func TestSolarTerm(t *testing.T) {
+	date, _ := time.Parse(layout, "2025.11.04 JST")
+	term := gengou.FindSolarTerm(date)
+	if term.Name != "霜降" {
+		t.Errorf("expected term %s to be 霜降", term.Name)
+	}
+}
+
+func TestSolarTermFallThrough(t *testing.T) {
+	date, _ := time.Parse(layout, "2026.01.01 JST")
+	term := gengou.FindSolarTerm(date)
+	if term.Name != "冬至" {
+		t.Errorf("expected term %s to be 冬至", term.Name)
 	}
 }
 
