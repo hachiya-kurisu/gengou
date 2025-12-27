@@ -27,6 +27,9 @@ README.md: README.gmi INSTALL.gmi
 
 doc: README.md
 
+dead:
+	deadcode -test ./...
+
 release: push
 	got send -T
 	git push github --tags
